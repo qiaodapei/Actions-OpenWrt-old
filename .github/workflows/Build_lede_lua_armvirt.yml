@@ -119,19 +119,25 @@ jobs:
 
     - name: 加载自定义源
       run: |
-        [ -e $FEEDS_CONF ] && rm -fv openwrt/feeds.conf.default && mv $FEEDS_CONF openwrt/feeds.conf.default
-        chmod +x $SCRIPT_SH
-        ./$SCRIPT_SH
+        sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+        sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
+        sed -i '3i src-git linkease_nas https://github.com/linkease/nas-packages.git' feeds.conf.default
+        sed -i '4i src-git linkease_nas_luci https://github.com/linkease/nas-packages-luci.git' feeds.conf.default
 
     - name: 更新源
-      run: cd openwrt && ./scripts/feeds update -a
+      run: |
+        cd openwrt && ./scripts/feeds update -a
+        rm -rf feeds/luci/applications/luci-app-mosdns
+        rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
+        rm -rf feeds/packages/utils/v2dat
+        rm -rf feeds/packages/lang/golang
+        git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
     - name: 安装源
       run: cd openwrt && ./scripts/feeds install -a
 
     - name: 加载自定义配置
       run: |
-        [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
 
     - name: 下载软件包
