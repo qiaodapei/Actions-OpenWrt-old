@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build lede(lua版) armvirt
+name: Build lede armvirt
 
 on:
   repository_dispatch:
