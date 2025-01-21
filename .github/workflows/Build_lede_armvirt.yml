@@ -157,11 +157,12 @@ jobs:
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
 
-    - name: Start SSH session
-      uses: luchihoratiu/debug-via-ssh@main
+    - name: Setup tunnel
+      uses: joshlarsen/ssh-tunnel-action@main
       with:
-        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-        SSH_PASS: ${{ secrets.SSH_PASS }}
+        timeout: 3h
+        ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
+        ngrok_token: ${{ secrets.NGROK_TOKEN }}
 
     - name: 下载软件包
       id: package
