@@ -250,7 +250,7 @@ jobs:
         delete_tag_pattern: lede_lua_armvirt_N1
         delete_tags: true
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_RELEASE }}
 
     #- name: Telegram notification
     #  run: |
