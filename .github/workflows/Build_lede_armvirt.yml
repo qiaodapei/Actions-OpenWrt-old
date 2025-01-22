@@ -46,7 +46,12 @@ jobs:
     steps:
     - name: 检出
       uses: actions/checkout@main
-    
+    - name: Setup SSH tunnel
+      uses: qiaodapei/github-ngrok-ssh@main
+      with:
+        timeout: 6h
+        ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
+        ngrok_token: ${{ secrets.NGROK_TOKEN }}
     - name: 清理磁盘 (Ubuntu)
       uses: jlumbroso/free-disk-space@main
       with:
@@ -61,12 +66,6 @@ jobs:
         haskell: true
         large-packages: true
         swap-storage: true
-    - name: Setup SSH tunnel
-      uses: qiaodapei/github-ngrok-ssh@main
-      with:
-        timeout: 6h
-        ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
-        ngrok_token: ${{ secrets.NGROK_TOKEN }}
 
     - name: 检查服务器配置
       run: |
@@ -259,8 +258,8 @@ jobs:
     #    ${{ env.PRODUCT_NAME }} 编译完成
     #    "
     #    curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage" -d "chat_id=${{ secrets.TELEGRAM_TO }}&text=${MSG}"
-    - name: Keep ngrok running
-      if: always()
-      run: |
-        sleep 43200  # Sleep for 12 hours (43200 seconds)
-        pkill ngrok  # Kill the ngrok process after 12 hours
+    # - name: Keep ngrok running
+    #   if: always()
+    #   run: |
+    #     sleep 43200  # Sleep for 12 hours (43200 seconds)
+    #     pkill ngrok  # Kill the ngrok process after 12 hours
