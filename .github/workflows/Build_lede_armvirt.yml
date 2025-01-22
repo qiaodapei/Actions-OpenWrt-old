@@ -227,7 +227,7 @@ jobs:
         commit: main
         token: ${{ secrets.RELEASES_TOKEN }}
         body: |
-          - 此为lede_lua_armvirt底包，非完整固件，每天自动编译
+          - 此为lede_armvirt_N1底包，非完整固件，每天自动编译
           - 当前使用版本:【编译前的最后一次[➦主源码](https://github.com/coolsnowwolf/lede)更新记录】
           ${{ env.useVersionInfo }}
         artifacts: ${{ env.FIRMWARE }}/*
@@ -237,7 +237,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         repository: ${{ github.repository }}
-        delete_workflow_pattern: Build lede(lua版) armvirt
+        delete_workflow_pattern: Build lede armvirt N1
         retain_days: 30
         keep_minimum_runs: 30
 
@@ -247,7 +247,7 @@ jobs:
       with:
         #repo:
         keep_latest: 10
-        delete_tag_pattern: lede_lua_armvirt
+        delete_tag_pattern: lede_lua_armvirt_N1
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
