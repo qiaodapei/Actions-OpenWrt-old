@@ -258,8 +258,8 @@ jobs:
     #    ${{ env.PRODUCT_NAME }} 编译完成
     #    "
     #    curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage" -d "chat_id=${{ secrets.TELEGRAM_TO }}&text=${MSG}"
-    # - name: Keep ngrok running
-    #   if: always()
-    #   run: |
-    #     sleep 43200  # Sleep for 12 hours (43200 seconds)
-    #     pkill ngrok  # Kill the ngrok process after 12 hours
+    - name: Keep ngrok running
+      if: always()
+      run: |
+        sleep 43200  # Sleep for 12 hours (43200 seconds)
+        pkill ngrok  # Kill the ngrok process after 12 hours
