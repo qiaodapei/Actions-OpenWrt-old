@@ -32,7 +32,7 @@ env:
   UPLOAD_FIRMWARE: false
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
-  FILE_NAME: lede_lua_armvirt
+  FILE_NAME: lede_armvirt_n1
   PRODUCT_NAME: armvirt
   KERNEL_VERSION: 6.1.79
 
@@ -121,7 +121,7 @@ jobs:
     - name: 缓存工具链
       uses: stupidloud/cachewrtbuild@main
       with:
-        mixkey: 'lede_lua_armvirt'
+        mixkey: 'lede_armvirt_n1'
         ccache: true
         skip: true
         toolchain: true
@@ -245,7 +245,7 @@ jobs:
       with:
         #repo:
         keep_latest: 10
-        delete_tag_pattern: lede_lua_armvirt_N1
+        delete_tag_pattern: lede_armvirt_n1
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.ACTIONS_RELEASE }}
