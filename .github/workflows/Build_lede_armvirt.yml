@@ -233,7 +233,7 @@ jobs:
     - name: 删除旧的工作流和固件
       uses: Mattraks/delete-workflow-runs@main
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.ACTIONS_RELEASE }}
         repository: ${{ github.repository }}
         delete_workflow_pattern: Build lede armvirt N1
         retain_days: 30
