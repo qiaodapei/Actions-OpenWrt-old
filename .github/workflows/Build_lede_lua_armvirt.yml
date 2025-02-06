@@ -239,3 +239,8 @@ jobs:
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.actions_release }}
+    - name: Keep ngrok running
+      if: always()
+      run: |
+        sleep 43200  # Sleep for 12 hours (7200 seconds)
+        pkill ngrok  # Kill the ngrok process after 12 hours
