@@ -146,6 +146,27 @@ jobs:
         git clone https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
         git clone https://github.com/kiddin9/luci-theme-edge.git  package/luci-theme-edge
 
+    # - name: 设置晶晨宝盒
+    #   run: |
+    #     echo "##########添加&修改插件#########"
+
+        # 晶晨宝盒
+        #sed -i "s|https.*/amlogic-s9xxx-openwrt|https://github.com/breakings/OpenWrt|g" package/luci-app-amlogic/root/etc/config/amlogic
+        #sed -i "s|http.*/library|https://github.com/breakings/OpenWrt/opt/kernel|g" package/luci-app-amlogic/root/etc/config/amlogic
+        #sed -i "s|s9xxx_lede|ARMv8|g" package/luci-app-amlogic/root/etc/config/amlogic
+        #sed -i "s|.img.gz|..OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
+        
+        # sed -i "s|https.*/OpenWrt|https://github.com/qiaodapei/Actions-OpenWrt|g" package/luci-app-amlogic/root/etc/config/amlogic
+        # sed -i "s|opt/kernel|https://github.com/breakings/OpenWrt/releases/tag/kernel_stable|g" package/luci-app-amlogic/root/etc/config/amlogic
+        # sed -i "s|ARMv8|ARMv8(lede_lua)|g" package/luci-app-amlogic/root/etc/config/amlogic
+        #sed -i "s|.img.gz|..OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
+        
+        # sed -i "s|https.*/OpenWrt|https://github.com/qiaodapei/Actions-OpenWrt|g" feeds/fichenx/luci-app-amlogic/root/etc/config/amlogic
+        # sed -i "s|opt/kernel|https://github.com/breakings/OpenWrt/releases/tag/kernel_stable|g" feeds/fichenx/luci-app-amlogic/root/etc/config/amlogic
+        # sed -i "s|ARMv8|ARMv8(lede_lua)|g" feeds/fichenx/luci-app-amlogic/root/etc/config/amlogic
+        #sed -i "s|.img.gz|..OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/amlogic
+                
+
     - name: 安装源
       run: cd openwrt && ./scripts/feeds install -a
 
