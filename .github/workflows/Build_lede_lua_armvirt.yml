@@ -128,6 +128,7 @@ jobs:
 
     - name: 加载自定义源
       run: |
+        cd openwrt
         sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
         sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
         sed -i '3i src-git linkease_nas https://github.com/linkease/nas-packages.git' feeds.conf.default
