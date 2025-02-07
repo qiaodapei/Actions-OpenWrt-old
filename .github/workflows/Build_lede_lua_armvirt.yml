@@ -143,8 +143,8 @@ jobs:
         rm -rf feeds/packages/utils/v2dat
         rm -rf feeds/packages/lang/golang
         git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
-        git clone https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
-        git clone https://github.com/kiddin9/luci-theme-edge.git  package/luci-theme-edge
+        # git clone https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
+        # git clone https://github.com/kiddin9/luci-theme-edge.git  package/luci-theme-edge
 
     # - name: 设置晶晨宝盒
     #   run: |
