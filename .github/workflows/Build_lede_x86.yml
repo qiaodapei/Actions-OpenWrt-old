@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build lede armvirt
+name: Build lede x86
 
 on:
   repository_dispatch:
@@ -19,7 +19,7 @@ on:
         required: false
         default: 'false'
   schedule:
-    - cron: 43 5 * * *
+    - cron: 43 12 * * *
 
 
 env:
@@ -27,10 +27,10 @@ env:
   REPO_BRANCH: master
   SCRIPT_SH: script.sh
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/ARMv8.config
+  CONFIG_FILE: config/X86.config
   UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
-  KERNEL_VERSION: 6.1.79
+  # KERNEL_VERSION: 6.1.79
 
 
 
@@ -119,7 +119,7 @@ jobs:
     - name: 缓存工具链
       uses: stupidloud/cachewrtbuild@main
       with:
-        mixkey: 'lede_lua_armvirt'
+        mixkey: 'lede_lua_x86'
         ccache: true
         skip: true
         toolchain: true
@@ -212,13 +212,13 @@ jobs:
         rm -rf ./build_dir
         echo "status=success" >> $GITHUB_OUTPUT
 
-    - name: Package Armvirt as OpenWrt
-      uses: ophub/flippy-openwrt-actions@main
-      env:
-        OPENWRT_ARMVIRT: openwrt/bin/targets/*/*/*.tar.gz
-        PACKAGE_SOC: s905d
-        KERNEL_VERSION_NAME: ${{ env.KERNEL_VERSION }}
-        WHOAMI: qiaodapei
+    # - name: Package Armvirt as OpenWrt
+    #   uses: ophub/flippy-openwrt-actions@main
+    #   env:
+    #     OPENWRT_ARMVIRT: openwrt/bin/targets/*/*/*.tar.gz
+    #     PACKAGE_SOC: s905d
+    #     KERNEL_VERSION_NAME: ${{ env.KERNEL_VERSION }}
+    #     WHOAMI: qiaodapei
 
     - name: Organize files
       id: organize
