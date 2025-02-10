@@ -30,14 +30,17 @@ jobs:
           - target: armvirt
             config_file: config/ARMv8.config
             cpu_warning: "已知编译成功CPU型号：8370C,8171M"
+            use_ngrok: false
           - target: x86
             config_file: config/X86.config
             cpu_warning: "已知编译成功CPU型号：8370C,8171M"
+            use_ngrok: true
     steps:
     - name: 检出
       uses: actions/checkout@main
 
     - name: Setup SSH tunnel
+      if: ${{ matrix.use_ngrok == 'true' }}
       uses: qiaodapei/github-ngrok-ssh@main
       with:
         timeout: 6h
