@@ -183,4 +183,18 @@ jobs:
         artifacts: "openwrt/bin/targets/*/*/*"
 
     - name: Remove old Releases
-      uses
+      uses: dev-drprasad/delete-older-releases@v0.3.2
+      with:
+        keep_latest: 3
+        delete_tags: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_RELEASE }}
+        
+    - name: 删除旧的工作流和固件
+      uses: Mattraks/delete-workflow-runs@main
+      with:
+        token: ${{ secrets.ACTIONS_RELEASE }}
+        repository: ${{ github.repository }}
+        delete_workflow_pattern: Build OpenWrt
+        retain_days: 0
+        keep_minimum_runs: 1
