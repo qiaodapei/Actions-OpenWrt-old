@@ -21,7 +21,7 @@ env:
   # KERNEL_VERSION: 6.1.79
 
 jobs:
-  build:
+  build_openwrt:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
