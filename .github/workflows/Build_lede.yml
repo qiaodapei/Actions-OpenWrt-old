@@ -28,7 +28,7 @@ jobs:
         target: [armvirt, x86]  # 使用矩阵来并行化构建不同的目标
         include:
           - target: armvirt
-            config_file: config/Armvirt.config
+            config_file: config/ARMv8.config
             cpu_warning: "已知编译成功CPU型号：8370C,8171M"
           - target: x86
             config_file: config/X86.config
