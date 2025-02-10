@@ -133,6 +133,7 @@ jobs:
         sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
         sed -i '3i src-git linkease_nas https://github.com/linkease/nas-packages.git' feeds.conf.default
         sed -i '4i src-git linkease_nas_luci https://github.com/linkease/nas-packages-luci.git' feeds.conf.default
+        sed -i '5i src-git ota https://github.com/breeze303/luci-app-ota.git;main' feeds.conf.default
         # sed -i '5i src-git helloworld https://github.com/fw876/helloworld.git' feeds.conf.default
 
     - name: 更新源
@@ -143,7 +144,6 @@ jobs:
         rm -rf feeds/packages/utils/v2dat
         rm -rf feeds/packages/lang/golang
         git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
-        git clone https://github.com/breeze303/luci-app-ota.git feeds/luci-app-ota
         # git clone https://github.com/gngpp/luci-theme-design.git  package/luci-theme-design
         # git clone https://github.com/kiddin9/luci-theme-edge.git  package/luci-theme-edge
 
