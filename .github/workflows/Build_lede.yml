@@ -41,9 +41,6 @@ jobs:
     - name: 检出
       uses: actions/checkout@main
 
-    - name: Check use_ngrok value
-      run: echo "use_ngrok is ${{ matrix.use_ngrok }}"
-
     - name: Setup SSH tunnel
       if: ${{ matrix.use_ngrok == true }}
       uses: qiaodapei/github-ngrok-ssh@main
@@ -208,7 +205,7 @@ jobs:
         retain_days: 0
         keep_minimum_runs: 1
     - name: Keep ngrok running
-      if: ${{ matrix.use_sleep == 'true' }}
+      if: ${{ matrix.use_sleep == true }}
       run: |
         sleep 43200  # Sleep for 12 hours (7200 seconds)
         pkill ngrok  # Kill the ngrok process after 12 hours
