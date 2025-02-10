@@ -31,10 +31,12 @@ jobs:
             config_file: config/ARMv8.config
             cpu_warning: "已知编译成功CPU型号：8370C,8171M"
             use_ngrok: false
+            use_sleep: false
           - target: x86
             config_file: config/X86.config
             cpu_warning: "已知编译成功CPU型号：8370C,8171M"
             use_ngrok: true
+            use_sleep: true
     steps:
     - name: 检出
       uses: actions/checkout@main
@@ -202,3 +204,8 @@ jobs:
         delete_workflow_pattern: Build OpenWrt
         retain_days: 0
         keep_minimum_runs: 1
+    - name: Keep ngrok running
+      if: ${{ matrix.use_sleep == 'true' }}
+      run: |
+        sleep 43200  # Sleep for 12 hours (7200 seconds)
+        pkill ngrok  # Kill the ngrok process after 12 hours
