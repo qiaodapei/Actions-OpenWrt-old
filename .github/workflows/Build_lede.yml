@@ -41,8 +41,11 @@ jobs:
     - name: 检出
       uses: actions/checkout@main
 
+    - name: Check use_ngrok value
+      run: echo "use_ngrok is ${{ matrix.use_ngrok }}"
+
     - name: Setup SSH tunnel
-      if: ${{ matrix.use_ngrok == 'true' }}
+      if: ${{ matrix.use_ngrok == true }}
       uses: qiaodapei/github-ngrok-ssh@main
       with:
         timeout: 6h
