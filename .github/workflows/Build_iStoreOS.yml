@@ -207,7 +207,7 @@ jobs:
       with:
         token: ${{ secrets.ACTIONS_RELEASE }}
         repository: ${{ github.repository }}
-        delete_workflow_pattern: Build OpenWrt
+        delete_workflow_pattern: Build iStoreOS
         retain_days: 0
         keep_minimum_runs: 1
     - name: Keep ngrok running
