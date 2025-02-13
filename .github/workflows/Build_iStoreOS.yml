@@ -108,8 +108,8 @@ jobs:
         
     - name: 加载自定义源
       run: |
-        cd openwrt
-        [ -e ${{ matrix.feeds_file }} ] && mv ${{ matrix.feeds_file }} feeds.conf.default
+        [ -e ${{ matrix.feeds_file }} ] && mv ${{ matrix.feeds_file }} openwrt/feeds.conf.default
+        # cd openwrt
         # sed -i '1i src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
         # sed -i '2i src-git small https://github.com/kenzok8/small' feeds.conf.default
         # sed -i '3i src-git linkease_nas https://github.com/linkease/nas-packages.git' feeds.conf.default
@@ -128,7 +128,7 @@ jobs:
     - name: 安装源
       run: cd openwrt && ./scripts/feeds install -a
 
-    - name: 自定义配置openwrt
+    - name: 自定义配置iStoreOS
       run: |
         cd openwrt
         # 修改默认IP为 192.168.9.1
