@@ -84,9 +84,7 @@ jobs:
         sudo -E apt -y purge azure-cli ghc* zulu* texlive* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
         [[ -n "${AGENT_TOOLSDIRECTORY}" ]] && sudo rm -rf "${AGENT_TOOLSDIRECTORY}"
         sudo -E apt update
-        sudo -E apt -y install clang llvm lld qemu-utils 
-        sudo -E apt -y install binutils bzip2 diff find flex gawk gcc-6+ getopt grep install libc-dev libz-dev
-        make4.1+ perl python3.6+ rsync subversion unzip which
+        sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* adoptopenjdk* mysql* php* mongodb* dotnet* moby* snapd* android* || true
         sudo -E apt -y autoremove --purge
         sudo -E systemctl daemon-reload
         sudo -E apt clean && sudo -E apt autoclean
