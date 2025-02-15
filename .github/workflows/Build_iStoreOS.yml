@@ -30,8 +30,8 @@ jobs:
             feeds_file: feeds/iStoreOS/feeds.buildinfo
             config_file: config/iStoreOS/N1.config
             cpu_warning: "已知编译成功CPU型号：8370C,8171M"
-            use_ngrok: false
-            use_sleep: false
+            use_ngrok: true 
+            use_sleep: true
           - target: x86
             feeds_file: feeds/iStoreOS/feeds.buildinfo
             config_file: config/iStoreOS/X86.config
@@ -235,5 +235,4 @@ jobs:
     - name: Keep ngrok running
       if: ${{ matrix.use_sleep == true }}
       run: |
-        sleep 43200  # Sleep for 12 hours (7200 seconds)
-        pkill ngrok  # Kill the ngrok process after 12 hours
+        sleep 18000  # Sleep for 12 hours (7200 seconds)
