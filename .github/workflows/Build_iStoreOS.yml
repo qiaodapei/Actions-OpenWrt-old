@@ -29,48 +29,24 @@ jobs:
           - target: N1
             feeds_file: feeds/iStoreOS/feeds.buildinfo
             config_file: config/iStoreOS/N1.config
-            cpu_warning: "已知编译成功CPU型号：8370C,8171M"
             use_ngrok: true 
             use_sleep: true
           - target: x86
             feeds_file: feeds/iStoreOS/feeds.buildinfo
             config_file: config/iStoreOS/X86.config
-            cpu_warning: "已知编译成功CPU型号：8370C,8171M"
-            use_ngrok: true
-            use_sleep: true
+            use_ngrok: false
+            use_sleep: false
     steps:
     - name: 检出
       uses: actions/checkout@main
-    - name: Setup SSH tunnel for x86
-      if: ${{ matrix.target == 'x86' && matrix.use_ngrok == true }}
+    
+    - name: Setup SSH tunnel
+      if: ${{ matrix.use_ngrok == true }}
       uses: qiaodapei/github-ngrok-ssh@main
       with:
         timeout: 6h
         ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
         ngrok_token: ${{ secrets.NGROK_TOKEN }}
-
-    # N1 执行前，确保 x86 执行完
-    - name: Wait for x86 to complete (60 seconds)
-      if: ${{ matrix.target == 'N1' }}
-      run: |
-        echo "Waiting for x86 to complete..."
-        sleep 60
-
-    - name: Setup SSH tunnel for N1
-      if: ${{ matrix.target == 'N1' && matrix.use_ngrok == true }}
-      uses: qiaodapei/github-ngrok-ssh@main
-      with:
-        timeout: 6h
-        ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
-        ngrok_token: ${{ secrets.NGROK_TOKEN }}
-
-    # - name: Setup SSH tunnel
-    #   if: ${{ matrix.use_ngrok == true }}
-    #   uses: qiaodapei/github-ngrok-ssh@main
-    #   with:
-    #     timeout: 6h
-    #     ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
-    #     ngrok_token: ${{ secrets.NGROK_TOKEN }}
 
     - name: 清理磁盘 (Ubuntu)
       uses: jlumbroso/free-disk-space@main
@@ -85,7 +61,7 @@ jobs:
     - name: 检查服务器配置
       run: |
         echo "警告⚠"
-        echo "${{ matrix.cpu_warning }}"
+        echo "已知编译成功CPU型号：8370C,8171M"
         echo "已知性能不足CPU型号：8272CL"
         echo -e "-------------- ------------CPU信息------------------------------------------\n"
         echo "CPU物理数量:$(cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l)"
