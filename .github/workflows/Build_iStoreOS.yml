@@ -20,11 +20,11 @@ env:
   # KERNEL_VERSION: 6.1.79
 
 jobs:
-  build_openwrt:
+  build_istoreos:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        target: [N1, x86]  # 使用矩阵来并行化构建不同的目标
+        target: [x86, N1]  # 使用矩阵来并行化构建不同的目标
         include:
           - target: N1
             feeds_file: feeds/iStoreOS/feeds.buildinfo
