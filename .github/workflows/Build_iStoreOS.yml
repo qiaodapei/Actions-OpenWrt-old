@@ -27,12 +27,12 @@ jobs:
         target: [x86, N1]  # 使用矩阵来并行化构建不同的目标
         include:
           - target: N1
-            feeds_file: feeds/iStoreOS/feeds.buildinfo
+            feeds_file: feeds/iStoreOS/n1.feeds.buildinfo
             config_file: config/iStoreOS/N1.config
             use_ngrok: true 
             use_sleep: true
           - target: x86
-            feeds_file: feeds/iStoreOS/feeds.buildinfo
+            feeds_file: feeds/iStoreOS/x86.feeds.buildinfo
             config_file: config/iStoreOS/X86.config
             use_ngrok: false
             use_sleep: false
